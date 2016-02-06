@@ -25,10 +25,9 @@ RUN apt-get install -y build-essential \
                        wget
 
 ## Boost 1.57
-RUN wget -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'\
-         -O /boost_1_57_0.tar.bz2 && \
+RUN wget -O /boost_1_57_0.tar.bz2 -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download' && \
     tar xjf /boost_1_57_0.tar.bz2 && \
     cd /boost_1_57_0/ && \
     ./bootstrap.sh "--prefix=/opt/boost_1_57_0" && \
     ./b2 install && \
-    rm -rf /boost_1_57_0.tar.bz2 boost_1_57_0
+    rm -rf /boost_1_57_0.tar.bz2 /boost_1_57_0
