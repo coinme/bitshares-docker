@@ -22,7 +22,8 @@ RUN apt-get install -y build-essential \
                        libbz2-dev \
                        libicu-dev \
                        python-dev \
-                       wget
+                       wget \
+                       libncurses5-dev
 
 RUN git clone --recursive https://github.com/bitshares/bitshares-2 /bitshares-2-git
 
