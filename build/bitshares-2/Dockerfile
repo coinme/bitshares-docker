@@ -23,7 +23,8 @@ RUN apt-get install -y build-essential \
                        libicu-dev \
                        python-dev \
                        wget \
-                       libncurses5-dev
+                       libncurses5-dev \
+                       doxygen
 
 RUN git clone --recursive https://github.com/bitshares/bitshares-2 /bitshares-2-git
 
