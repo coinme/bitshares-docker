@@ -29,6 +29,7 @@ RUN apt-get install -y build-essential \
 RUN git clone --recursive https://github.com/bitshares/bitshares-2 /bitshares-2-git
 
 RUN mkdir /build && \
+    cd /build/ && \
     CC=gcc-4.9 CXX=g++-4.9 cmake -DBOOST_ROOT="/opt/boost_1_57_0" -DCMAKE_BUILD_TYPE=Release /bitshares-2-git && \
     make || make -j 1 && \
     mkdir /bitshares-2 && \
