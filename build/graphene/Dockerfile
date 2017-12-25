@@ -1,12 +1,12 @@
-FROM ubuntu:15.04
+FROM ubuntu:16.04
 MAINTAINER Fabian Schuh <Fabian@cryptonomex.com>
 
 ## Core Utilities
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get install -y build-essential \
-                       gcc-4.9 \
-                       g++-4.9 \
+                       gcc-5 \
+                       g++-5 \
                        cmake \
                        make \
                        libbz2-dev \
@@ -24,13 +24,13 @@ RUN apt-get install -y build-essential \
                        python-dev \
                        wget
 
-## Boost 1.57
+## Boost 1.60
 WORKDIR /
-RUN wget -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'\
-         -O /boost_1_57_0.tar.bz2
-RUN tar xjf /boost_1_57_0.tar.bz2
-WORKDIR boost_1_57_0/
-RUN ./bootstrap.sh "--prefix=/opt/boost_1_57_0"
+RUN wget -c 'http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2/download'\
+         -O /boost_1_60_0.tar.bz2
+RUN tar xjf /boost_1_60_0.tar.bz2
+WORKDIR boost_1_60_0/
+RUN ./bootstrap.sh "--prefix=/opt/boost_1_60_0"
 RUN ./b2 install
 
 ## Fetching Graphene
@@ -40,5 +40,6 @@ WORKDIR /graphene
 RUN git submodule update --init --recursive
 
 ## Building Graphene
-RUN CC=gcc-4.9 CXX=g++-4.9 cmake -DBOOST_ROOT="/opt/boost_1_57_0" -DCMAKE_BUILD_TYPE=Release .
+RUN CC=gcc-5 CXX=g++-5 cmake -DBOOST_ROOT="/opt/boost_1_60_0" -DCMAKE_BUILD_TYPE=Release .
 RUN make || make -j 1
+
